@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useCurrentUser, useLogout } from "./features/auth/useAuth.tsx";
 
 interface Health {
   status: string;
@@ -11,24 +12,24 @@ async function fetchHealth(): Promise<Health> {
   return res.json();
 }
 
-// Slice-0 walking skeleton: FE gọi BE thật, BE trả trạng thái DB thật.
-// Giao diện tối thiểu, chưa cần style (theo "Stub cho phép" của slice-0).
+// slice-1: trang chủ protected. Hiển thị user đăng nhập + health (từ slice-0).
 export function App() {
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["health"],
-    queryFn: fetchHealth,
-  });
+  const { data: user } = useCurrentUser();
+  const logout = useLogout();
+  const { data: health } = useQuery({ queryKey: ["health"], queryFn: fetchHealth });
 
   return (
     <main>
-      <h1>phng — Health Check</h1>
-      {isLoading && <p>Đang kiểm tra kết nối…</p>}
-      {isError && <p>Lỗi gọi backend: {(error as Error).message}</p>}
-      {data && (
+      <h1>phng — Trang chủ</h1>
+      <p>
+        Xin chào <b>{user?.username}</b> (vai trò: {user?.role})
+        {" "}
+        <button onClick={() => logout()}>Đăng xuất</button>
+      </p>
+      {health && (
         <ul>
           <li>Backend: ok</li>
-          <li>Database: {data.db === "up" ? "đã kết nối (up)" : "mất kết nối (down)"}</li>
-          <li>Trạng thái tổng: {data.status}</li>
+          <li>Database: {health.db === "up" ? "đã kết nối (up)" : "mất kết nối (down)"}</li>
         </ul>
       )}
     </main>
