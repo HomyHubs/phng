@@ -15,7 +15,7 @@ Bảng chỉ mục cấp cao cho toàn bộ Slice / Task / layer-pass. Đây là
 | ID | Tên | Cơ chế | Trạng thái | Owner | Nhánh | PR | Phụ thuộc | File chi tiết |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | slice-0 | Walking skeleton | Dọc | Done | — | dev | — | — | `slices/slice-0-walking-skeleton.md` |
-| slice-1 | Xác thực & phiên đăng nhập | Dọc | Chưa bắt đầu | — | — | — | slice-0 | `slices/slice-1-xac-thuc.md` |
+| slice-1 | Xác thực & phiên đăng nhập | Dọc | Done | — | feature/slice-1-auth | — | slice-0 | `slices/slice-1-xac-thuc.md` |
 | slice-2 | Mô hình dữ liệu vi phạm + ingest thủ công | Dọc | Chưa bắt đầu | — | — | — | slice-1 | `slices/slice-2-mo-hinh-vi-pham.md` |
 | slice-3 | Webhook nhận dữ liệu đối tác + bóc tách | Dọc | Chưa bắt đầu | — | — | — | slice-2 | `slices/slice-3-webhook-ingest.md` |
 | slice-4 | Dashboard hiển thị | Dọc | Chưa bắt đầu | — | — | — | slice-2 | `slices/slice-4-dashboard.md` |
