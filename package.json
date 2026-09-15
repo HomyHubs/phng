@@ -1,0 +1,13 @@
+{
+  "name": "phng",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev:api": "pnpm --filter @phng/api dev",
+    "dev:web": "pnpm --filter @phng/web dev",
+    "db:up": "docker compose -f compose.dev.yml up -d"
+  }
+}
