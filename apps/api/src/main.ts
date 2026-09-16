@@ -3,6 +3,7 @@ import cors from "@fastify/cors";
 import cookie from "@fastify/cookie";
 import { healthRoutes } from "./features/health/routes.ts";
 import { authRoutes } from "./features/auth/index.ts";
+import { violationRoutes } from "./features/violations/index.ts";
 import { runMigrations } from "./db.ts";
 
 const app = Fastify({ logger: true });
@@ -28,6 +29,7 @@ await app.register(cors, {
 await app.register(cookie);
 await app.register(healthRoutes);
 await app.register(authRoutes);
+await app.register(violationRoutes);
 
 // slice-1: đảm bảo schema tồn tại trước khi nhận request.
 await runMigrations();

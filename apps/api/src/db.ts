@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { Kysely, PostgresDialect, sql, type Generated } from "kysely";
@@ -21,9 +21,32 @@ export interface SessionTable {
   expires_at: Date;
 }
 
+// slice-2: mô hình vi phạm. 1 xe → nhiều vi phạm.
+export interface VehicleTable {
+  id: Generated<number>;
+  plate: string;
+  vehicle_type: string;
+  inspection_expiry: Date | null;
+  badge: string | null;
+  civil_insurance_expiry: Date | null;
+  created_at: Generated<Date>;
+}
+
+export interface ViolationTable {
+  id: Generated<number>;
+  vehicle_id: number;
+  content: string;
+  location: string | null;
+  occurred_at: Date;
+  status: Generated<"chua_xu_ly" | "da_xu_ly">;
+  created_at: Generated<Date>;
+}
+
 export interface Database {
   app_user: AppUserTable;
   session: SessionTable;
+  vehicle: VehicleTable;
+  violation: ViolationTable;
 }
 
 const connectionString =
@@ -35,10 +58,16 @@ export const db = new Kysely<Database>({
   }),
 });
 
-// Chạy migration SQL lúc khởi động (idempotent). TODO(slice-later): thay bằng dbmate.
+// Chạy toàn bộ migration SQL trong db/migrations theo thứ tự tên, idempotent lúc khởi động.
+// TODO(slice-later): thay bằng dbmate.
 export async function runMigrations() {
   const here = dirname(fileURLToPath(import.meta.url));
-  const migrationPath = join(here, "../../../db/migrations/001_auth.sql");
-  const ddl = await readFile(migrationPath, "utf8");
-  await sql.raw(ddl).execute(db);
+  const migrationsDir = join(here, "../../../db/migrations");
+  const files = (await readdir(migrationsDir))
+    .filter((name) => name.endsWith(".sql"))
+    .sort();
+  for (const name of files) {
+    const ddl = await readFile(join(migrationsDir, name), "utf8");
+    await sql.raw(ddl).execute(db);
+  }
 }

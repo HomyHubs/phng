@@ -1,8 +1,8 @@
 # Slice/Task slice-2 — Mô hình dữ liệu vi phạm + ingest thủ công
 
 - Cơ chế: Dọc
-- Owner hiện tại: —
-- Nhánh: —
+- Owner hiện tại: An Vo
+- Nhánh: feature/slice-2-vi-pham
 - PR: —
 - Trạng thái: xem `../MVP-BACKLOG.md`
 - Phụ thuộc: slice-1

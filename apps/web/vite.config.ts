@@ -8,6 +8,7 @@ export default defineConfig({
     proxy: {
       "/health": "http://localhost:3000",
       "/auth": "http://localhost:3000",
+      "/violations": "http://localhost:3000",
     },
   },
 });
