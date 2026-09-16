@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch --experimental-strip-types src/main.ts",
-    "seed": "node --experimental-strip-types src/seed.ts"
+    "seed": "node --experimental-strip-types src/seed.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
     "fastify": "^5.2.0",
