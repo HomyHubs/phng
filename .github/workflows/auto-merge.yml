@@ -29,7 +29,12 @@ jobs:
               const changesRequested = reviews.data.some(r => r.state === "CHANGES_REQUESTED")
               if (!approved || changesRequested) continue
               const checks = await github.rest.checks.listForRef({ owner, repo, ref: pr.head.sha })
-              const allChecksGreen = checks.data.check_runs.every(c => c.status === "completed" && c.conclusion === "success")
+              const checkRuns = checks.data.check_runs
+              // Phai co it nhat 1 check chay: mang rong lam .every() tra ve true (vacuous truth),
+              // nen mot PR khong co CI nao van bi coi la "xanh" neu khong chan lai o day.
+              const allChecksGreen =
+                checkRuns.length > 0 &&
+                checkRuns.every(c => c.status === "completed" && c.conclusion === "success")
               if (!allChecksGreen) continue
               try {
                 await github.rest.pulls.merge({ owner, repo, pull_number: pr.number, merge_method: "squash" })
