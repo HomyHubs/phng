@@ -8,6 +8,13 @@
   "scripts": {
     "dev:api": "pnpm --filter @phng/api dev",
     "dev:web": "pnpm --filter @phng/web dev",
-    "db:up": "docker compose -f compose.dev.yml up -d"
+    "db:up": "docker compose -f compose.dev.yml up -d",
+    "lint": "oxlint",
+    "typecheck": "pnpm -r run typecheck",
+    "test": "pnpm -r --if-present run test",
+    "gate": "pnpm run lint && pnpm run typecheck && pnpm run test"
+  },
+  "devDependencies": {
+    "oxlint": "^1.83.0"
   }
 }
