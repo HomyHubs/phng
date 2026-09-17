@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { App } from "./App.tsx";
 import { LoginPage } from "./features/auth/LoginPage.tsx";
 import { RequireAuth } from "./features/auth/RequireAuth.tsx";
+import { ViolationsPage } from "./features/violations/ViolationsPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,14 @@ createRoot(document.getElementById("root")!).render(
             element={
               <RequireAuth>
                 <App />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/violations"
+            element={
+              <RequireAuth>
+                <ViolationsPage />
               </RequireAuth>
             }
           />

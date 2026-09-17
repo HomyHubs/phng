@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 import { useCurrentUser, useLogout } from "./features/auth/useAuth.tsx";
 
 interface Health {
@@ -25,6 +26,9 @@ export function App() {
         Xin chào <b>{user?.username}</b> (vai trò: {user?.role})
         {" "}
         <button onClick={() => logout()}>Đăng xuất</button>
+      </p>
+      <p>
+        <Link to="/violations">Danh sách vi phạm</Link>
       </p>
       {health && (
         <ul>

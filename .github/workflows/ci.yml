@@ -30,3 +30,75 @@ jobs:
       # Typecheck toan bo workspace; bao loi build se lam CI do -> chan auto-merge.
       - name: Typecheck
         run: pnpm -r run typecheck
+
+  lint:
+    name: Lint (oxlint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cai pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Cai Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Cai dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Nua con lai cua cong chat luong (AGENTS.md muc 7): lint && typecheck && test.
+      - name: Lint
+        run: pnpm run lint
+
+  test:
+    name: Test (api, Postgres that)
+    runs-on: ubuntu-latest
+
+    # Slice cham DB that -> test tich hop chay tren mot Postgres that (AGENTS.md muc 16/20).
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: phng
+          POSTGRES_PASSWORD: phng
+          POSTGRES_DB: phng
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U phng -d phng"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cai pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Cai Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Cai dependencies
+        run: pnpm install --frozen-lockfile
+
+      # argon2 la native addon (auth requireAuth dung toi), test import qua chuoi nay.
+      # Build tuong minh de khong phu thuoc vao co che approve-builds cua pnpm.
+      - name: Build native deps (argon2)
+        run: pnpm rebuild argon2
+
+      # runMigrations() trong test se tu dung schema trong Postgres o tren.
+      - name: Test
+        env:
+          DATABASE_URL: postgres://phng:phng@localhost:5432/phng
+        run: pnpm --filter @phng/api run test
