@@ -575,7 +575,8 @@ Không dùng mục này để theo dõi công việc đang làm dở. Nguồn s�
 
 | Slice/Task | Tên | Cơ chế | Kết quả rollup | PR | Ngày merge |
 | --- | --- | --- | --- | --- | --- |
-| slice-0 | Walking skeleton | Dọc | — | — | — |
+| slice-0 | Walking skeleton | Dọc | Done — khung FE→BE→DB, health-check DB thật | — | 2026-09-15 |
+| slice-1 | Xác thực & phiên đăng nhập | Dọc | Done — đăng nhập/đăng xuất, phiên opaque (argon2, Postgres) | #1 | 2026-09-15 |
 
 **Quyết định cấu trúc repo (mục 4):** [ ] Trường hợp A — [ ] Trường hợp B
 

@@ -16,13 +16,6 @@ Bảng chỉ mục cấp cao cho toàn bộ Slice / Task / layer-pass. Đây là
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | slice-0 | Walking skeleton | Dọc | Done | — | dev | — | — | `slices/slice-0-walking-skeleton.md` |
 | slice-1 | Xác thực & phiên đăng nhập | Dọc | Done | — | feature/slice-1-auth | — | slice-0 | `slices/slice-1-xac-thuc.md` |
-| slice-2 | Mô hình dữ liệu vi phạm + ingest thủ công | Dọc | Đang làm | An Vo | feature/slice-2-vi-pham | — | slice-1 | `slices/slice-2-mo-hinh-vi-pham.md` |
-| slice-3 | Webhook nhận dữ liệu đối tác + bóc tách | Dọc | Chưa bắt đầu | — | — | — | slice-2 | `slices/slice-3-webhook-ingest.md` |
-| slice-4 | Dashboard hiển thị | Dọc | Chưa bắt đầu | — | — | — | slice-2 | `slices/slice-4-dashboard.md` |
-| slice-5 | Tra cứu phạt nguội theo biển số | Dọc | Chưa bắt đầu | — | — | — | slice-2 | `slices/slice-5-tra-cuu-bien-so.md` |
-| slice-6 | Export Excel | Dọc | Chưa bắt đầu | — | — | — | slice-4, slice-5 | `slices/slice-6-export-excel.md` |
-| slice-7 | Phân quyền admin/user | Dọc | Chưa bắt đầu | — | — | — | slice-1, slice-6 | `slices/slice-7-phan-quyen.md` |
-| slice-8 | Đăng ký dịch vụ thông báo tự động | Dọc | Chưa bắt đầu | — | — | — | slice-2 | `slices/slice-8-dang-ky-dich-vu-thong-bao.md` |
 
 ## Trạng thái hợp lệ
 
