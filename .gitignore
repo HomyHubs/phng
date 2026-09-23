@@ -2,3 +2,7 @@ node_modules/
 dist/
 .env
 *.log
+
+# Local-only, ngoài phạm vi slice-3: scratch của review-loop + helper auth GitHub App. Không commit.
+.review-scratch/
+github_app_auth.py
