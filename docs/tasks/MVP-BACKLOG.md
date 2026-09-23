@@ -16,7 +16,7 @@ Bảng chỉ mục cấp cao cho toàn bộ Slice / Task / layer-pass. Đây là
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | slice-0 | Walking skeleton | Dọc | Done | — | dev | — | — | `slices/slice-0-walking-skeleton.md` |
 | slice-1 | Xác thực & phiên đăng nhập | Dọc | Done | — | feature/slice-1-auth | — | slice-0 | `slices/slice-1-xac-thuc.md` |
-| slice-3 | Tra cứu phạt nguội (API đối tác, read-only) | Dọc | Đang làm | AI agent | feature/slice-3-tra-cuu-phat-nguoi | — | slice-2 (#3) | `slices/slice-3-tra-cuu-phat-nguoi.md` |
+| slice-3 | Tra cứu phạt nguội (API đối tác, read-only) | Dọc | Review | AI agent | feature/slice-3-tra-cuu-phat-nguoi | #4 | slice-2 (#3) | `slices/slice-3-tra-cuu-phat-nguoi.md` |
 
 ## Trạng thái hợp lệ
 
