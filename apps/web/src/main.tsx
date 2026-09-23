@@ -6,6 +6,7 @@ import { App } from "./App.tsx";
 import { LoginPage } from "./features/auth/LoginPage.tsx";
 import { RequireAuth } from "./features/auth/RequireAuth.tsx";
 import { ViolationsPage } from "./features/violations/ViolationsPage.tsx";
+import { LookupPage } from "./features/lookup/LookupPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,14 @@ createRoot(document.getElementById("root")!).render(
             element={
               <RequireAuth>
                 <ViolationsPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/lookup"
+            element={
+              <RequireAuth>
+                <LookupPage />
               </RequireAuth>
             }
           />

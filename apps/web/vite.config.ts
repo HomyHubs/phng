@@ -9,6 +9,7 @@ export default defineConfig({
       "/health": "http://localhost:3000",
       "/auth": "http://localhost:3000",
       "/violations": "http://localhost:3000",
+      "/lookup": "http://localhost:3000",
     },
   },
 });

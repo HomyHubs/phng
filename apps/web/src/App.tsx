@@ -30,6 +30,9 @@ export function App() {
       <p>
         <Link to="/violations">Danh sách vi phạm</Link>
       </p>
+      <p>
+        <Link to="/lookup">Tra cứu phạt nguội</Link>
+      </p>
       {health && (
         <ul>
           <li>Backend: ok</li>
